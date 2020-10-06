@@ -2,6 +2,8 @@ package de.ilja.RestfulCarlist.model;
 
 public class Car {
 
+    private  int id;
+    private static int counter = 1000;
     private String model;
     private String brand;
     private String leistung;
@@ -20,6 +22,15 @@ public class Car {
         this.baujahr = baujahr;
         this.motor = motor;
         this.verbrauch = verbrauch;
+        this.generateId();
+    }
+
+    public void generateId() {
+        this.id = counter++;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getModel() {

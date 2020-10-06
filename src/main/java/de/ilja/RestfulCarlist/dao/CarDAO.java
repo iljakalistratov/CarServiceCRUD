@@ -10,7 +10,7 @@ import java.util.*;
 @Repository
 public class CarDAO {
 
-    private static final Map<String, Car> carMap = new HashMap<String, Car>();
+    private static final Map<Integer, Car> carMap = new HashMap<Integer, Car>();
 
     static {
         initcars();
@@ -21,27 +21,27 @@ public class CarDAO {
         Car car2 = new Car("A-Klasse", "Mercedes", "150", "2014", "1.8 Diesel", "6");
         Car car3 = new Car("911 Carrera", "Porsche", "385", "2016", "3.0 Benzin", "9.4");
 
-        carMap.put(car1.getModel(), car1);
-        carMap.put(car2.getModel(), car2);
-        carMap.put(car3.getModel(), car3);
+        carMap.put(car1.getId(), car1);
+        carMap.put(car2.getId(), car2);
+        carMap.put(car3.getId(), car3);
     }
 
-    public Car getCar(String model) {
+    public Car getCar(int model) {
         return carMap.get(model);
     }
 
     public Car addCar(Car car) {
-        carMap.put(car.getModel(), car);
+        carMap.put(car.getId(), car);
         return car;
     }
 
     public Car updateCar(Car car) {
-        carMap.put(car.getModel(), car);
+        carMap.put(car.getId(), car);
         return car;
     }
 
-    public void deleteCar(String model) {
-        carMap.remove(model);
+    public void deleteCar(int id) {
+        carMap.remove(id);
     }
 
     public List<Car> getAllCars() {

@@ -20,6 +20,7 @@ public class MainRESTController {
         return "CarService Application by Ilja Kalistratov";
     }
 
+
     @RequestMapping(value = "/carlist",
         method = RequestMethod.GET,
         produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -29,12 +30,14 @@ public class MainRESTController {
         return list;
     }
 
-    @RequestMapping(value = "/car/{model}",
+
+    @RequestMapping(value = "/car/{id}",
         method = RequestMethod.GET)
     @ResponseBody
-    public Car getCar(@PathVariable("model") String model) {
-        return carDAO.getCar(model);
+    public Car getCar(@PathVariable("id") int id) {
+        return carDAO.getCar(id);
     }
+
 
     @RequestMapping(value = "/car",
             method = RequestMethod.POST,
@@ -43,9 +46,11 @@ public class MainRESTController {
     @ResponseBody
     public Car addCar(@RequestBody Car car) {
         System.out.println("(Server Side) Creating new car: " + car.getModel());
+        car.generateId();
 
         return carDAO.addCar(car);
     }
+
 
     @RequestMapping(value = "/car",
             method = RequestMethod.PUT,
@@ -58,13 +63,14 @@ public class MainRESTController {
         return carDAO.updateCar(car);
     }
 
-    @RequestMapping(value = "/car/{model}",
+
+    @RequestMapping(value = "/car/{id}",
             method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteCar(@PathVariable("model") String model) {
-        System.out.println("(Server Side) Deleting car: " + model);
+    public void deleteCar(@PathVariable("id") int id) {
+        System.out.println("(Server Side) Deleting car: " + id);
 
-        carDAO.deleteCar(model);
+        carDAO.deleteCar(id);
     }
 
 

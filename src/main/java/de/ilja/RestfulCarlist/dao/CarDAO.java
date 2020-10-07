@@ -1,10 +1,8 @@
 package de.ilja.RestfulCarlist.dao;
 
-import com.google.gson.Gson;
 import de.ilja.RestfulCarlist.model.Car;
 import org.springframework.stereotype.Repository;
 
-import java.io.FileWriter;
 import java.util.*;
 
 @Repository
@@ -35,7 +33,28 @@ public class CarDAO {
         return car;
     }
 
-    public Car updateCar(Car car) {
+    public Car updateCar(Car car, int id) {
+        carMap.get(car.getId());
+
+        if (car.getModel() == null) {
+            car.setModel(carMap.get(id).getModel());
+        }
+        if (car.getBrand() == null) {
+            car.setBrand(carMap.get(id).getBrand());
+        }
+        if (car.getLeistung() == null) {
+            car.setLeistung(carMap.get(id).getLeistung());
+        }
+        if (car.getBaujahr() == null) {
+            car.setBaujahr(carMap.get(id).getBaujahr());
+        }
+        if (car.getMotor() == null) {
+            car.setMotor(carMap.get(id).getMotor());
+        }
+        if (car.getVerbrauch() == null) {
+            car.setVerbrauch(carMap.get(id).getVerbrauch());
+        }
+
         carMap.put(car.getId(), car);
         return car;
     }

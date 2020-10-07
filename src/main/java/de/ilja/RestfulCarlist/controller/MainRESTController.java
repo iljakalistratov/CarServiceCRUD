@@ -52,15 +52,16 @@ public class MainRESTController {
     }
 
 
-    @RequestMapping(value = "/car",
+    @RequestMapping(value = "/car/{id}",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Car updateCar(@RequestBody Car car) {
+    public Car updateCar(@RequestBody Car car, @PathVariable("id") int id) {
+        car.setId(id);
         System.out.println("(Server Side) Updating car: " + car.getModel());
 
-        return carDAO.updateCar(car);
+        return carDAO.updateCar(car, id);
     }
 
 

@@ -8,7 +8,7 @@ import java.util.*;
 @Repository
 public class CarDAO {
 
-    private static final Map<Integer, Car> carMap = new HashMap<Integer, Car>();
+    private static Map<Integer, Car> carMap = new HashMap<Integer, Car>();
 
     static {
         initcars();
@@ -61,6 +61,10 @@ public class CarDAO {
 
     public void deleteCar(int id) {
         carMap.remove(id);
+    }
+
+    public  void resetHashmap() {
+        carMap = new HashMap<>();
     }
 
     public List<Car> getAllCars() {

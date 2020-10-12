@@ -3,7 +3,9 @@ package de.ilja.RestfulCarlist.controller;
 import de.ilja.RestfulCarlist.dao.CarDAO;
 import de.ilja.RestfulCarlist.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,13 +33,25 @@ public class MainRESTController {
     }
 
 
-    @RequestMapping(value = "/car/{id}",
-        method = RequestMethod.GET)
-    @ResponseBody
-    public Car getCar(@PathVariable("id") int id) {
-        return carDAO.getCar(id);
+//    @RequestMapping(value = "/car/{id}",
+//        method = RequestMethod.GET)
+//    @ResponseBody
+//    public Car getCar(@PathVariable("id") int id) {
+//        return carDAO.getCar(id);
+//    }
+
+    @RequestMapping(value = "/car/{id}")
+    @GetMapping
+    public ResponseEntity<?> readSingleAutomobile(@PathVariable(value = "id") int id) {
+        if (carDAO.checkForInvalidID(id))
+            return incorrectParameterResponse();
+        return new ResponseEntity<>(carDAO.getCar(id), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/car")
+    public static ResponseEntity<String> noIDAndSlash() {
+        return new ResponseEntity<String>("You did not provide an ID", HttpStatus.BAD_REQUEST);
+    }
 
     @RequestMapping(value = "/car",
             method = RequestMethod.POST,
@@ -72,6 +86,10 @@ public class MainRESTController {
         System.out.println("(Server Side) Deleting car: " + id);
 
         carDAO.deleteCar(id);
+    }
+
+    public static ResponseEntity<String> incorrectParameterResponse() {
+        return new ResponseEntity<String>("This ID does not exist", HttpStatus.BAD_REQUEST);
     }
 
 

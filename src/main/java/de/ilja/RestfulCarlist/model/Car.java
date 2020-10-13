@@ -1,5 +1,6 @@
 package de.ilja.RestfulCarlist.model;
 
+
 public class Car {
 
     private  int id;

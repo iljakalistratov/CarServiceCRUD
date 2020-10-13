@@ -29,6 +29,7 @@ public class CarDAO {
     }
 
     public Car addCar(Car car) {
+        car.generateId();
         carMap.put(car.getId(), car);
         return car;
     }

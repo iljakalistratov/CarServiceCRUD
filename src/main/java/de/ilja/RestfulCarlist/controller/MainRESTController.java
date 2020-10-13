@@ -14,7 +14,12 @@ import java.util.List;
 public class MainRESTController {
 
     @Autowired
-    private CarDAO carDAO;
+    public CarDAO carDAO;
+
+    @Autowired
+    public MainRESTController(CarDAO carDao) {
+        this.carDAO = carDao;
+    }
 
     @RequestMapping("/")
     @ResponseBody
@@ -23,22 +28,12 @@ public class MainRESTController {
     }
 
 
-    @RequestMapping(value = "/carlist",
-        method = RequestMethod.GET,
-        produces = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public List<Car> getCar() {
-        List<Car> list = carDAO.getAllCars();
-        return list;
+
+    @RequestMapping(value = "/carlist")
+    public ResponseEntity<?> showCarlist() {
+        return new ResponseEntity<>(carDAO.getAllCars(), HttpStatus.OK);
     }
 
-
-//    @RequestMapping(value = "/car/{id}",
-//        method = RequestMethod.GET)
-//    @ResponseBody
-//    public Car getCar(@PathVariable("id") int id) {
-//        return carDAO.getCar(id);
-//    }
 
     @RequestMapping(value = "/car/{id}")
     @GetMapping
@@ -53,40 +48,37 @@ public class MainRESTController {
         return new ResponseEntity<String>("You did not provide an ID", HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(value = "/car",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Car addCar(@RequestBody Car car) {
-        System.out.println("(Server Side) Creating new car: " + car.getModel());
-        car.generateId();
 
-        return carDAO.addCar(car);
+    @PostMapping(value = "/car", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> createCar(@RequestBody Car carJson) {
+        carDAO.addCar(carJson);
+        return new ResponseEntity<>("Created car with ID: " + carJson.getId(), HttpStatus.OK);
     }
 
 
-    @RequestMapping(value = "/car/{id}",
-            method = RequestMethod.PUT,
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Car updateCar(@RequestBody Car car, @PathVariable("id") int id) {
-        car.setId(id);
-        System.out.println("(Server Side) Updating car: " + car.getModel());
 
-        return carDAO.updateCar(car, id);
+    @PutMapping(value = "/car/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> updateCar (@RequestBody Car carJson,
+                                             @PathVariable("id") int id) {
+        if (id == 0 || carDAO.checkForInvalidID(id) ) {
+            return incorrectParameterResponse();
+        }
+        carJson.setId(id);
+        carDAO.updateCar(carJson, id);
+        return new ResponseEntity<>("Updated :" + id, HttpStatus.OK);
     }
 
 
-    @RequestMapping(value = "/car/{id}",
-            method = RequestMethod.DELETE)
-    @ResponseBody
-    public void deleteCar(@PathVariable("id") int id) {
-        System.out.println("(Server Side) Deleting car: " + id);
 
+    @DeleteMapping(value = "/car/{id}")
+    public ResponseEntity<String> deleteCar(@PathVariable(value = "id") int id) {
+        if (id == 0 || carDAO.checkForInvalidID(id)) {
+            return incorrectParameterResponse();
+        }
         carDAO.deleteCar(id);
+        return new ResponseEntity<>("Deleted: " + id, HttpStatus.NO_CONTENT);
     }
+
 
     public static ResponseEntity<String> incorrectParameterResponse() {
         return new ResponseEntity<String>("This ID does not exist", HttpStatus.BAD_REQUEST);

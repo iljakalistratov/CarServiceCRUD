@@ -14,7 +14,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @ApiOperation(value = "/carlist", tags = "MainRESTController")
 @RestController
-@EnableSwagger2
 public class MainRESTController {
 
     @Autowired

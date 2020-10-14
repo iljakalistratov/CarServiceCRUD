@@ -68,7 +68,7 @@ public class CarDAO {
         carMap = new HashMap<>();
     }
 
-    public boolean checkForInvalidID(int id) {
+    public boolean isInvalidID(int id) {
         return carMap.get(id) == null;
     }
 

@@ -8,8 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class MainRESTController {
 
@@ -37,15 +35,15 @@ public class MainRESTController {
 
     @RequestMapping(value = "/car/{id}")
     @GetMapping
-    public ResponseEntity<?> readSingleAutomobile(@PathVariable(value = "id") int id) {
-        if (carDAO.checkForInvalidID(id))
-            return incorrectParameterResponse();
-        return new ResponseEntity<>(carDAO.getCar(id), HttpStatus.OK);
+    public ResponseEntity<Car> readSingleAutomobile(@PathVariable(value = "id") int id) {
+        if (carDAO.isInvalidID(id))
+            return incorrectParameterResponse2();
+        return new ResponseEntity<Car>(carDAO.getCar(id), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/car")
     public static ResponseEntity<String> noIDAndSlash() {
-        return new ResponseEntity<String>("You did not provide an ID", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("You did not provide an ID", HttpStatus.BAD_REQUEST);
     }
 
 
@@ -60,7 +58,7 @@ public class MainRESTController {
     @PutMapping(value = "/car/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> updateCar (@RequestBody Car carJson,
                                              @PathVariable("id") int id) {
-        if (id == 0 || carDAO.checkForInvalidID(id) ) {
+        if (id == 0 || carDAO.isInvalidID(id) ) {
             return incorrectParameterResponse();
         }
         carJson.setId(id);
@@ -72,7 +70,7 @@ public class MainRESTController {
 
     @DeleteMapping(value = "/car/{id}")
     public ResponseEntity<String> deleteCar(@PathVariable(value = "id") int id) {
-        if (id == 0 || carDAO.checkForInvalidID(id)) {
+        if (id == 0 || carDAO.isInvalidID(id)) {
             return incorrectParameterResponse();
         }
         carDAO.deleteCar(id);
@@ -82,6 +80,10 @@ public class MainRESTController {
 
     public static ResponseEntity<String> incorrectParameterResponse() {
         return new ResponseEntity<String>("This ID does not exist", HttpStatus.BAD_REQUEST);
+    }
+
+    public static ResponseEntity<Car> incorrectParameterResponse2() {
+        return new ResponseEntity<Car>(HttpStatus.BAD_REQUEST);
     }
 
 

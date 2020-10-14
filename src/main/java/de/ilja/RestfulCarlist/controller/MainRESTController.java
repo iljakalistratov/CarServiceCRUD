@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@ApiOperation(value = "/carlist", tags = "MainRESTController")
+@ApiOperation(value = "/car", tags = "MainRESTController")
 @RestController
 public class MainRESTController {
 
@@ -26,14 +26,22 @@ public class MainRESTController {
 
     private static final Logger LOGGER = LogManager.getLogger(MainRESTController.class);
 
+    @ApiOperation(
+            value = "Show startscreen",
+            notes = "Shows basic information",
+            response = Car.class
+    )
     @GetMapping("/")
-
     public String startscreen() {
         return "CarService Application by Ilja Kalistratov";
     }
 
 
-
+    @ApiOperation(
+            value = "Show the list of cars",
+            notes = "Shows a list of all cars in your list with all parameters and information",
+            response = Car.class
+    )
     @GetMapping(value = "/carlist")
     public ResponseEntity<?> showCarlist() {
         LOGGER.debug("GET Request | List all cars");
@@ -41,7 +49,11 @@ public class MainRESTController {
     }
 
 
-
+    @ApiOperation(
+            value = "Show single Automobile",
+            notes = "Shows all information about the selected automobile",
+            response = Car.class
+    )
     @GetMapping(value = "/car/{id}")
     public ResponseEntity<Car> readSingleAutomobile(@PathVariable(value = "id") int id) {
         if (carDAO.isInvalidID(id))
@@ -51,12 +63,23 @@ public class MainRESTController {
 
     }
 
+
+    @ApiOperation(
+            value = "Show Error Message if no ID is given",
+            notes = "Shows an error message",
+            response = Car.class
+    )
     @GetMapping(value = "/car")
     public static ResponseEntity<String> noIDAndSlash() {
         return new ResponseEntity<>("You did not provide an ID", HttpStatus.BAD_REQUEST);
     }
 
 
+    @ApiOperation(
+            value = "Add new Car to the list",
+            notes = "You can add a new car to the list, if you write a car json into the Body, the ID will be generated automatically",
+            response = Car.class
+    )
     @PostMapping(value = "/car", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> createCar(@RequestBody Car carJson) {
         LOGGER.debug("POST Request | carJson");
@@ -66,7 +89,11 @@ public class MainRESTController {
     }
 
 
-
+    @ApiOperation(
+            value = "Edit an existing Car",
+            notes = "You can edit an existing car, if you write a car json into the Body, all empty parameters should not change",
+            response = Car.class
+    )
     @PutMapping(value = "/car/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> updateCar (@RequestBody Car carJson,
                                              @PathVariable("id") int id) {
@@ -82,7 +109,11 @@ public class MainRESTController {
     }
 
 
-
+    @ApiOperation(
+            value = "Delete Car from the list",
+            notes = "With this method it is possible to delete a car from the list, if you provide its ID",
+            response = Car.class
+    )
     @DeleteMapping(value = "/car/{id}")
     public ResponseEntity<String> deleteCar(@PathVariable(value = "id") int id) {
         if (id == 0 || carDAO.isInvalidID(id)) {

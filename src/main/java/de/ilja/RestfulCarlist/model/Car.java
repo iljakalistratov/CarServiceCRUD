@@ -8,17 +8,17 @@ public class Car {
     @ApiModelProperty(notes = "ID of the car", name = "id", required = true, value = "234567")
     private  int id;
     private static int counter = 1000;
-    @ApiModelProperty(notes = "model of the car", name = "model", required = true, value = "test")
+    @ApiModelProperty(notes = "model of the car", name = "model", required = true, value = "Supra")
     private String model;
-    @ApiModelProperty(notes = "brand of the car", name = "brand", required = true, value = "test")
+    @ApiModelProperty(notes = "brand of the car", name = "brand", required = true, value = "Toyota")
     private String brand;
-    @ApiModelProperty(notes = "leistung of the car", name = "leistung", required = true, value = "test")
+    @ApiModelProperty(notes = "leistung of the car", name = "leistung", required = true, value = "700")
     private String leistung;
-    @ApiModelProperty(notes = "baujahr of the car", name = "baujahr", required = true, value = "test")
+    @ApiModelProperty(notes = "baujahr of the car", name = "baujahr", required = true, value = "2010")
     private String baujahr;
-    @ApiModelProperty(notes = "motor of the car", name = "motor", required = true, value = "test")
+    @ApiModelProperty(notes = "motor of the car", name = "motor", required = true, value = "2 Benzin")
     private String motor;
-    @ApiModelProperty(notes = "verbrauch of the car", name = "verbrauch", required = true, value = "test")
+    @ApiModelProperty(notes = "verbrauch of the car", name = "verbrauch", required = true, value = "12")
     private String verbrauch;
 
     public Car() {

@@ -1,15 +1,24 @@
 package de.ilja.RestfulCarlist.model;
 
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class Car {
 
+    @ApiModelProperty(notes = "ID of the car", name = "id", required = true, value = "234567")
     private  int id;
     private static int counter = 1000;
+    @ApiModelProperty(notes = "model of the car", name = "model", required = true, value = "test")
     private String model;
+    @ApiModelProperty(notes = "brand of the car", name = "brand", required = true, value = "test")
     private String brand;
+    @ApiModelProperty(notes = "leistung of the car", name = "leistung", required = true, value = "test")
     private String leistung;
+    @ApiModelProperty(notes = "baujahr of the car", name = "baujahr", required = true, value = "test")
     private String baujahr;
+    @ApiModelProperty(notes = "motor of the car", name = "motor", required = true, value = "test")
     private String motor;
+    @ApiModelProperty(notes = "verbrauch of the car", name = "verbrauch", required = true, value = "test")
     private String verbrauch;
 
     public Car() {

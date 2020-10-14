@@ -2,6 +2,7 @@ package de.ilja.RestfulCarlist.controller;
 
 import de.ilja.RestfulCarlist.dao.CarDAO;
 import de.ilja.RestfulCarlist.model.Car;
+import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@ApiOperation(value = "/carlist", tags = "MainRESTController")
 @RestController
+@EnableSwagger2
 public class MainRESTController {
 
     @Autowired
@@ -23,23 +27,23 @@ public class MainRESTController {
 
     private static final Logger LOGGER = LogManager.getLogger(MainRESTController.class);
 
-    @RequestMapping("/")
-    @ResponseBody
+    @GetMapping("/")
+
     public String startscreen() {
         return "CarService Application by Ilja Kalistratov";
     }
 
 
 
-    @RequestMapping(value = "/carlist")
+    @GetMapping(value = "/carlist")
     public ResponseEntity<?> showCarlist() {
         LOGGER.debug("GET Request | List all cars");
         return new ResponseEntity<>(carDAO.getAllCars(), HttpStatus.OK);
     }
 
 
-    @RequestMapping(value = "/car/{id}")
-    @GetMapping
+
+    @GetMapping(value = "/car/{id}")
     public ResponseEntity<Car> readSingleAutomobile(@PathVariable(value = "id") int id) {
         if (carDAO.isInvalidID(id))
             return incorrectParameterResponse2();
@@ -48,7 +52,7 @@ public class MainRESTController {
 
     }
 
-    @RequestMapping(value = "/car")
+    @GetMapping(value = "/car")
     public static ResponseEntity<String> noIDAndSlash() {
         return new ResponseEntity<>("You did not provide an ID", HttpStatus.BAD_REQUEST);
     }

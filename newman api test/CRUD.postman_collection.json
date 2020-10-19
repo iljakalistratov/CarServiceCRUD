@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "e676709a-643d-4f35-9b54-9fb2d8e57257",
+		"name": "CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST New Car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "041ccc6d-b25e-4861-b6ee-c5a07dc6cd6e",
+						"exec": [
+							"pm.test(\"success status\", () => pm.response.to.be.success );\r",
+							"pm.test(\"Status Code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"model\":\"Supra\",\"brand\":\"Toyota\",\"leistung\":\"370\",\"baujahr\":\"1991\",\"motor\":\"3 Benzin\",\"verbrauch\":\"14\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Cars",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "423c8d5e-2783-494e-a2a0-7b2bf6b95231",
+						"exec": [
+							"pm.test(\"Status Code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/carlist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Single Car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f0081980-fb63-42c9-9ce5-a710f63a618c",
+						"exec": [
+							"pm.test(\"success status\", () => pm.response.to.be.success );\r",
+							"pm.test(\"name is correct\", () => pm.expect(pm.response.json().model).to.equal(\"Celica\"));\r",
+							"pm.test(\"Status Code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/car/1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"car",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Single Car No Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f90a46e-6f9a-4227-94a1-d265f413ff30",
+						"exec": [
+							"pm.test(\"Status Code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT edit existing Car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "647837a3-41c7-4c7b-8e18-4a0fbb8f5a6c",
+						"exec": [
+							"pm.test(\"Status Code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"model\":\"C-Klasse\",\"leistung\":\"350\",\"motor\":\"2 Diesel\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/car/1001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"car",
+						"1001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE existing Car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9fa0c818-177a-4031-9f3b-e8208c156a5e",
+						"exec": [
+							"pm.test(\"Status Code is 204\", function() {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/car/1002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"car",
+						"1002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE not existing car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c94cefe7-21a5-4068-8c94-1e50fc1edcbb",
+						"exec": [
+							"pm.test(\"Status Code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/car/9999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"car",
+						"9999"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

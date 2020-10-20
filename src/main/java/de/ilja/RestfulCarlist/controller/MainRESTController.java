@@ -12,6 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Main Controller Class for Http requests & CRUD operations
+ * author Ilja
+ */
 @ApiOperation(value = "/car", tags = "MainRESTController")
 @RestController
 public class MainRESTController {
@@ -26,6 +30,11 @@ public class MainRESTController {
 
     private static final Logger LOGGER = LogManager.getLogger(MainRESTController.class);
 
+
+    /**
+     * GET Mapping for "localhost:8080/"
+     * @return Returns Basic Information about this application
+     */
     @ApiOperation(
             value = "Show startscreen",
             notes = "Shows basic information",
@@ -36,7 +45,11 @@ public class MainRESTController {
         return "CarService Application by Ilja Kalistratov";
     }
 
-
+    /**
+     *
+     * This method shows you the whole list of all cars
+     * @return List of all cars
+     */
     @ApiOperation(
             value = "Show the list of cars",
             notes = "Shows a list of all cars in your list with all parameters and information",
@@ -48,7 +61,12 @@ public class MainRESTController {
         return new ResponseEntity<>(carDAO.getAllCars(), HttpStatus.OK);
     }
 
-
+    /**
+     *
+     *  This method shows all information about a single car.
+     * @param id
+     * @return information/parameters of one single car object
+     */
     @ApiOperation(
             value = "Show single Automobile",
             notes = "Shows all information about the selected automobile",
@@ -63,7 +81,10 @@ public class MainRESTController {
 
     }
 
-
+    /**
+     * ErrorHandling if no ID is given
+     * @return Errormessage and HTTP: Bad request
+     */
     @ApiOperation(
             value = "Show Error Message if no ID is given",
             notes = "Shows an error message",
@@ -74,7 +95,11 @@ public class MainRESTController {
         return new ResponseEntity<>("You did not provide an ID", HttpStatus.BAD_REQUEST);
     }
 
-
+    /**
+     * Generates new car
+     * @param carJson
+     * @return ID of the new created car and HTTP: Ok
+     */
     @ApiOperation(
             value = "Add new Car to the list",
             notes = "You can add a new car to the list, if you write a car json into the Body, the ID will be generated automatically",
@@ -88,7 +113,12 @@ public class MainRESTController {
         return new ResponseEntity<>("Created car with ID: " + carJson.getId(), HttpStatus.OK);
     }
 
-
+    /**
+     * Method for editing an already existing car
+     * @param carJson
+     * @param id
+     * @return ID of updated Car & HTTP: Ok  OR  incorrectParameterResponse
+     */
     @ApiOperation(
             value = "Edit an existing Car",
             notes = "You can edit an existing car, if you write a car json into the Body, all empty parameters should not change",
@@ -108,7 +138,11 @@ public class MainRESTController {
         return new ResponseEntity<>("Updated :" + id, HttpStatus.OK);
     }
 
-
+    /**
+     *
+     * @param id
+     * @return ID of deleted Car & HTTP: no content
+     */
     @ApiOperation(
             value = "Delete Car from the list",
             notes = "With this method it is possible to delete a car from the list, if you provide its ID",
@@ -126,10 +160,18 @@ public class MainRESTController {
     }
 
 
+    /**
+     *
+     * @return "This ID does not exist" % HTTP: Bad Request
+     */
     public static ResponseEntity<String> incorrectParameterResponse() {
         return new ResponseEntity<String>("This ID does not exist", HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     *
+     * @return HTTP: Bad Request
+     */
     public static ResponseEntity<Car> incorrectParameterResponse2() {
         return new ResponseEntity<Car>(HttpStatus.BAD_REQUEST);
     }

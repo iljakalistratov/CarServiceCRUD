@@ -3,6 +3,11 @@ package de.ilja.RestfulCarlist.model;
 
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * This class defines a Car with model, brand leistung, baujahr, motor & verbrauch as parameters
+ * @author Ilja
+ */
+
 public class Car {
 
     @ApiModelProperty(notes = "ID of the car", name = "id", required = true, value = "234567")
@@ -25,6 +30,17 @@ public class Car {
 
     }
 
+    /**
+     * Car Constructor
+     * @author Ilja
+     * @param model
+     * @param brand
+     * @param leistung
+     * @param baujahr
+     * @param motor
+     * @param verbrauch
+     */
+
     public Car(String model, String brand, String leistung, String baujahr, String motor, String verbrauch) {
         this.model = model;
         this.brand = brand;
@@ -34,6 +50,11 @@ public class Car {
         this.verbrauch = verbrauch;
         this.generateId();
     }
+
+    /**
+     * This method generates an ID, when you're creating a new Car object
+     * @author Ilja
+     */
 
     public void generateId() {
         this.id = counter++;

@@ -14,6 +14,10 @@ public class CarDAO {
         initcars();
     }
 
+    /**
+     * This  method automatically creates 3 Car objects and puts them on the Map for Sample purposes
+     * @author Ilja
+     */
     private static void initcars() {
         Car car1 = new Car("Celica", "Toyota", "150", "2004", "1.8 Benzin", "8");
         Car car2 = new Car("A-Klasse", "Mercedes", "150", "2014", "1.8 Diesel", "6");
@@ -24,16 +28,33 @@ public class CarDAO {
         carMap.put(car3.getId(), car3);
     }
 
-    public Car getCar(int model) {
-        return carMap.get(model);
+    /**
+     *
+     * @param id
+     * @return Returns Car object from the map with the given id
+     */
+    public Car getCar(int id) {
+        return carMap.get(id);
     }
 
+    /**
+     * This method adds a new Car to the map
+     * @param car
+     * @return new car object
+     */
     public Car addCar(Car car) {
         car.generateId();
         carMap.put(car.getId(), car);
         return car;
     }
 
+    /**
+     * This method edits an existing car and takes previous parameters, if new parameters aren't given.
+     * The ID cannot be edited/changed.
+     * @param car
+     * @param id
+     * @return edited car object
+     */
     public Car updateCar(Car car, int id) {
         carMap.get(car.getId());
 
@@ -60,18 +81,34 @@ public class CarDAO {
         return car;
     }
 
+    /**
+     * This method deletes an existing car object.
+     * @param id
+     */
     public void deleteCar(int id) {
         carMap.remove(id);
     }
 
+    /**
+     * This method clears the hashmap.
+     */
     public  void resetHashmap() {
         carMap = new HashMap<>();
     }
 
+    /**
+     * Checks for invalid ID
+     * @param id
+     * @return null, if ID is invalid
+     */
     public boolean isInvalidID(int id) {
         return carMap.get(id) == null;
     }
 
+    /**
+     * Gets all cars in form of a list
+     * @return list, with all cars
+     */
     public List<Car> getAllCars() {
         Collection<Car> c = carMap.values();
         List<Car> list = new ArrayList<Car>();

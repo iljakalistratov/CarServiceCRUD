@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 public class CarDAO implements Iterable {
 
     private CarRepository carRepository;
-
+    private int counter = 1000;
 
     @Autowired
     public CarDAO(CarRepository carRepository) {
@@ -23,6 +23,17 @@ public class CarDAO implements Iterable {
 
     }
 
+    /**
+     * This method generates an ID, when you're creating a new Car object
+     * @author Ilja
+     */
+
+    public void generateId(Car car) {
+        while (carRepository.findById(counter).isPresent()) {
+            counter++;
+        }
+        car.setId(counter);
+    }
 
     /**
      *
@@ -39,7 +50,7 @@ public class CarDAO implements Iterable {
      * @return new car object
      */
     public Car addCar(Car car) {
-        car.generateId();
+        this.generateId(car);
         carRepository.save(car);
         return car;
     }

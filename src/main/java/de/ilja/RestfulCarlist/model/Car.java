@@ -1,7 +1,9 @@
 package de.ilja.RestfulCarlist.model;
 
 
+import de.ilja.RestfulCarlist.databases.CarRepository;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,8 +21,6 @@ public class Car {
     @ApiModelProperty(notes = "ID of the car", name = "id", required = true, value = "234567")
     @Id
     private  int id;
-
-    private static int counter = 1000;
 
     @ApiModelProperty(notes = "model of the car", name = "model", required = true, value = "Supra")
     private String model;
@@ -62,17 +62,8 @@ public class Car {
         this.baujahr = baujahr;
         this.motor = motor;
         this.verbrauch = verbrauch;
-        this.generateId();
     }
 
-    /**
-     * This method generates an ID, when you're creating a new Car object
-     * @author Ilja
-     */
-
-    public void generateId() {
-        this.id = counter++;
-    }
 
     public int getId() {
         return id;

@@ -1,6 +1,7 @@
 package de.ilja.RestfulCarlist.controller;
 
 import de.ilja.RestfulCarlist.dao.CarDAO;
+import de.ilja.RestfulCarlist.databases.CarRepository;
 import de.ilja.RestfulCarlist.model.Car;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;

@@ -3,26 +3,40 @@ package de.ilja.RestfulCarlist.model;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * This class defines a Car with model, brand leistung, baujahr, motor & verbrauch as parameters
  * @author Ilja
  */
 
+@Entity
+@Table(name = "car")
 public class Car {
 
     @ApiModelProperty(notes = "ID of the car", name = "id", required = true, value = "234567")
+    @Id
     private  int id;
+
     private static int counter = 1000;
+
     @ApiModelProperty(notes = "model of the car", name = "model", required = true, value = "Supra")
     private String model;
+
     @ApiModelProperty(notes = "brand of the car", name = "brand", required = true, value = "Toyota")
     private String brand;
+
     @ApiModelProperty(notes = "leistung of the car", name = "leistung", required = true, value = "700")
     private String leistung;
+
     @ApiModelProperty(notes = "baujahr of the car", name = "baujahr", required = true, value = "2010")
     private String baujahr;
+
     @ApiModelProperty(notes = "motor of the car", name = "motor", required = true, value = "2 Benzin")
     private String motor;
+
     @ApiModelProperty(notes = "verbrauch of the car", name = "verbrauch", required = true, value = "12")
     private String verbrauch;
 

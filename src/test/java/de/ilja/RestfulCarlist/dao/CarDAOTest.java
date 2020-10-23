@@ -49,23 +49,4 @@ class CarDAOTest {
         carDao.deleteCar(car1.getId());
         assertNull(carDao.getCar(car1.getId()));
     }
-
-    @Test
-    void getAllCars() {
-
-        carDao.resetHashmap();
-
-        Car car1 = new Car("Celica", "Toyota", "150", "2004", "1.8 Benzin", "8");
-        Car car2 = new Car("A-Klasse", "Mercedes", "150", "2014", "1.8 Diesel", "6");
-        Car car3 = new Car("911 Carrera", "Porsche", "385", "2016", "3.0 Benzin", "9.4");
-        Car car4 = new Car("911 Carrera", "Porsche", "385", "2016", "3.0 Benzin", "9.4");
-
-        carDao.addCar(car1);
-        carDao.addCar(car2);
-        carDao.addCar(car3);
-        carDao.addCar(car4);
-        System.out.println(carDao.getAllCars());
-        assertEquals(4, carDao.getAllCars().size());
-
-    }
 }

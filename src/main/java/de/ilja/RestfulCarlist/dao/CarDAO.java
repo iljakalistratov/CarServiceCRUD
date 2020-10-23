@@ -1,32 +1,28 @@
 package de.ilja.RestfulCarlist.dao;
 
+import de.ilja.RestfulCarlist.databases.CarRepository;
 import de.ilja.RestfulCarlist.model.Car;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.function.Consumer;
 
-@Repository
-public class CarDAO {
+@Component
+public class CarDAO implements Iterable {
 
-    private static Map<Integer, Car> carMap = new HashMap<Integer, Car>();
+    private CarRepository carRepository;
 
-    static {
-        initcars();
+
+    @Autowired
+    public CarDAO(CarRepository carRepository) {
+        this.carRepository = carRepository;
     }
 
-    /**
-     * This  method automatically creates 3 Car objects and puts them on the Map for Sample purposes
-     * @author Ilja
-     */
-    private static void initcars() {
-        Car car1 = new Car("Celica", "Toyota", "150", "2004", "1.8 Benzin", "8");
-        Car car2 = new Car("A-Klasse", "Mercedes", "150", "2014", "1.8 Diesel", "6");
-        Car car3 = new Car("911 Carrera", "Porsche", "385", "2016", "3.0 Benzin", "9.4");
+    public CarDAO() {
 
-        carMap.put(car1.getId(), car1);
-        carMap.put(car2.getId(), car2);
-        carMap.put(car3.getId(), car3);
     }
+
 
     /**
      *
@@ -34,7 +30,7 @@ public class CarDAO {
      * @return Returns Car object from the map with the given id
      */
     public Car getCar(int id) {
-        return carMap.get(id);
+        return carRepository.findById(id).get();
     }
 
     /**
@@ -44,7 +40,7 @@ public class CarDAO {
      */
     public Car addCar(Car car) {
         car.generateId();
-        carMap.put(car.getId(), car);
+        carRepository.save(car);
         return car;
     }
 
@@ -56,28 +52,27 @@ public class CarDAO {
      * @return edited car object
      */
     public Car updateCar(Car car, int id) {
-        carMap.get(car.getId());
 
-        if (car.getModel() == null) {
-            car.setModel(carMap.get(id).getModel());
-        }
-        if (car.getBrand() == null) {
-            car.setBrand(carMap.get(id).getBrand());
-        }
-        if (car.getLeistung() == null) {
-            car.setLeistung(carMap.get(id).getLeistung());
-        }
-        if (car.getBaujahr() == null) {
-            car.setBaujahr(carMap.get(id).getBaujahr());
-        }
-        if (car.getMotor() == null) {
-            car.setMotor(carMap.get(id).getMotor());
-        }
-        if (car.getVerbrauch() == null) {
-            car.setVerbrauch(carMap.get(id).getVerbrauch());
-        }
+//        if (car.getModel() == null) {
+//            car.setModel(carMap.get(id).getModel());
+//        }
+//        if (car.getBrand() == null) {
+//            car.setBrand(carMap.get(id).getBrand());
+//        }
+//        if (car.getLeistung() == null) {
+//            car.setLeistung(carMap.get(id).getLeistung());
+//        }
+//        if (car.getBaujahr() == null) {
+//            car.setBaujahr(carMap.get(id).getBaujahr());
+//        }
+//        if (car.getMotor() == null) {
+//            car.setMotor(carMap.get(id).getMotor());
+//        }
+//        if (car.getVerbrauch() == null) {
+//            car.setVerbrauch(carMap.get(id).getVerbrauch());
+//        }
 
-        carMap.put(car.getId(), car);
+        carRepository.save(car);
         return car;
     }
 
@@ -86,15 +81,9 @@ public class CarDAO {
      * @param id
      */
     public void deleteCar(int id) {
-        carMap.remove(id);
+        carRepository.deleteById(id);
     }
 
-    /**
-     * This method clears the hashmap.
-     */
-    public  void resetHashmap() {
-        carMap = new HashMap<>();
-    }
 
     /**
      * Checks for invalid ID
@@ -102,7 +91,7 @@ public class CarDAO {
      * @return null, if ID is invalid
      */
     public boolean isInvalidID(int id) {
-        return carMap.get(id) == null;
+        return carRepository.findById(id) == null;
     }
 
     /**
@@ -110,11 +99,23 @@ public class CarDAO {
      * @return list, with all cars
      */
     public List<Car> getAllCars() {
-        Collection<Car> c = carMap.values();
+//        carRepository.findAll();
+//        Collection<Car> c = carMap.values();
         List<Car> list = new ArrayList<Car>();
-        list.addAll(c);
+        carRepository.findAll().forEach(list::add);
+//        list.addAll(c);
         return list;
     }
 
+
+    @Override
+    public Iterator iterator() {
+        return null;
+    }
+
+    @Override
+    public void forEach(Consumer action) {
+
+    }
 }
 

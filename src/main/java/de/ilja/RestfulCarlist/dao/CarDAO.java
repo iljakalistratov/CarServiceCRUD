@@ -64,24 +64,24 @@ public class CarDAO implements Iterable {
      */
     public Car updateCar(Car car, int id) {
 
-//        if (car.getModel() == null) {
-//            car.setModel(carMap.get(id).getModel());
-//        }
-//        if (car.getBrand() == null) {
-//            car.setBrand(carMap.get(id).getBrand());
-//        }
-//        if (car.getLeistung() == null) {
-//            car.setLeistung(carMap.get(id).getLeistung());
-//        }
-//        if (car.getBaujahr() == null) {
-//            car.setBaujahr(carMap.get(id).getBaujahr());
-//        }
-//        if (car.getMotor() == null) {
-//            car.setMotor(carMap.get(id).getMotor());
-//        }
-//        if (car.getVerbrauch() == null) {
-//            car.setVerbrauch(carMap.get(id).getVerbrauch());
-//        }
+        if (car.getModel() == null) {
+            car.setModel(carRepository.findById(id).get().getModel());
+        }
+        if (car.getBrand() == null) {
+            car.setBrand(carRepository.findById(id).get().getBrand());
+        }
+        if (car.getLeistung() == null) {
+            car.setLeistung(carRepository.findById(id).get().getLeistung());
+        }
+        if (car.getBaujahr() == null) {
+            car.setBaujahr(carRepository.findById(id).get().getBaujahr());
+        }
+        if (car.getMotor() == null) {
+            car.setMotor(carRepository.findById(id).get().getMotor());
+        }
+        if (car.getVerbrauch() == null) {
+            car.setVerbrauch(carRepository.findById(id).get().getVerbrauch());
+        }
 
         carRepository.save(car);
         return car;

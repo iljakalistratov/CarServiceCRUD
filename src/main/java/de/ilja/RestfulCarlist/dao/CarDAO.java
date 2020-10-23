@@ -118,6 +118,10 @@ public class CarDAO implements Iterable {
         return list;
     }
 
+    public void clearAllCars() {
+        carRepository.deleteAll();
+    }
+
 
     @Override
     public Iterator iterator() {

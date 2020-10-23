@@ -161,6 +161,19 @@ public class MainRESTController {
     }
 
 
+    @ApiOperation(
+            value = "Delete All Cars from the list",
+            notes = "With this method it is possible to delete every car from the list",
+            response = Car.class
+    )
+    @DeleteMapping(value = "/reset")
+    public ResponseEntity<?> resetAllCars() {
+        carDAO.clearAllCars();
+        LOGGER.info("DELETE Request | Succesfully deleted all cars");
+        return new ResponseEntity<>("Empty Database", HttpStatus.NO_CONTENT);
+    }
+
+
     /**
      *
      * @return "This ID does not exist" % HTTP: Bad Request

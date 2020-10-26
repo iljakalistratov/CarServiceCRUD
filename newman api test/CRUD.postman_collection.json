@@ -211,7 +211,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/car/1001",
+					"raw": "http://localhost:8080/car/{{carID}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -219,7 +219,7 @@
 					"port": "8080",
 					"path": [
 						"car",
-						"1001"
+						"{{carID}}"
 					]
 				}
 			},

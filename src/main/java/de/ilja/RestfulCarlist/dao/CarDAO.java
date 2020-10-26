@@ -92,7 +92,10 @@ public class CarDAO implements Iterable {
      * @param id
      */
     public void deleteCar(int id) {
-        carRepository.deleteById(id);
+        if (carRepository.existsById(id)) {
+            carRepository.deleteById(id);
+        }
+
     }
 
 
@@ -102,7 +105,7 @@ public class CarDAO implements Iterable {
      * @return null, if ID is invalid
      */
     public boolean isInvalidID(int id) {
-        return carRepository.findById(id) == null;
+        return !carRepository.findById(id).isPresent();
     }
 
     /**

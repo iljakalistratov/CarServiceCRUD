@@ -16,7 +16,18 @@
 							"pm.test(\"success status\", () => pm.response.to.be.success );\r",
 							"pm.test(\"Status Code is 200\", function() {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							"\r",
+							"\r",
+							"//Save the Respone CarID\r",
+							"\r",
+							"var responseData = pm.response.text();\r",
+							"\r",
+							"var response = responseData.replace(\"Created car with ID: \", \"\");\r",
+							"\r",
+							"pm.globals.set(\"carID\", response);\r",
+							"\r",
+							"console.info(response);"
 						],
 						"type": "text/javascript"
 					}
@@ -97,7 +108,7 @@
 						"id": "f0081980-fb63-42c9-9ce5-a710f63a618c",
 						"exec": [
 							"pm.test(\"success status\", () => pm.response.to.be.success );\r",
-							"pm.test(\"name is correct\", () => pm.expect(pm.response.json().model).to.equal(\"Celica\"));\r",
+							"pm.test(\"name is correct\", () => pm.expect(pm.response.json().model).to.equal(\"Supra\"));\r",
 							"pm.test(\"Status Code is 200\", function() {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});"
@@ -117,7 +128,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/car/1000",
+					"raw": "http://localhost:8080/car/{{carID}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -125,7 +136,7 @@
 					"port": "8080",
 					"path": [
 						"car",
-						"1000"
+						"{{carID}}"
 					]
 				}
 			},
@@ -234,7 +245,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/car/1002",
+					"raw": "http://localhost:8080/car/{{carID}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -242,7 +253,7 @@
 					"port": "8080",
 					"path": [
 						"car",
-						"1002"
+						"{{carID}}"
 					]
 				}
 			},

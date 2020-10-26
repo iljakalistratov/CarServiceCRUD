@@ -151,9 +151,12 @@ public class MainRESTController {
     )
     @DeleteMapping(value = "/car/{id}")
     public ResponseEntity<String> deleteCar(@PathVariable(value = "id") int id) {
-        if (id == 0 || carDAO.isInvalidID(id)) {
+        if (carDAO.isInvalidID(id)) {
             LOGGER.error("DELETE Request | No car found with ID: " + id);
             return incorrectParameterResponse();
+        }
+        else if (carDAO.getAllCars().contains(id)) {
+
         }
         carDAO.deleteCar(id);
         LOGGER.info("DELETE Request | Succesfully deleted car: " + id);

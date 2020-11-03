@@ -4,10 +4,12 @@ import de.ilja.RestfulCarlist.databases.CarRepository;
 import de.ilja.RestfulCarlist.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.*;
 import java.util.function.Consumer;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @Component
 public class CarDAO implements Iterable {
 

@@ -1,0 +1,23 @@
+<h2>Car List</h2>>
+<table class= "table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let car of cars | keyvalue">
+            <td> {{car.value.id}} </td>
+            <td> {{car.value.model}} </td>
+            <td> {{car.value.brand}} </td>
+            <td>
+                <button routerLink="/update-car/{{car.value.id}}" class="btn btn-info"> EDIT </button>
+                <button (click) = "deleteCar(car.value.id)" class="btn btn-danger" style="margin-left: 10px;"> DELETE </button>
+                <button (click) = "carDetails(car.value.id)" class="btn btn-success" style="margin-left: 10px;"> DETAILS </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

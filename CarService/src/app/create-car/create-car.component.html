@@ -1,0 +1,43 @@
+<h3>Add Car</h3>
+<div class="col-md-4 offset-md-4">
+    <form (ngSubmit) = "onSubmit()">
+    <div class="form-group">
+        <label> Model </label>
+        <input type="text" class="form-control" id="model"
+            [(ngModel)] = "car.model" name="model">
+    </div>
+
+    <div class="form-group">
+        <label> Marke </label>
+        <input type="text" class="form-control" id="brand"
+            [(ngModel)] = "car.brand" name="brand">
+    </div>
+
+    <div class="form-group">
+        <label> Leistung </label>
+        <input type="text" class="form-control" id="leistung"
+            [(ngModel)] = "car.leistung" name="leistung">
+    </div>
+
+    <div class="form-group">
+        <label> Baujahr </label>
+        <input type="text" class="form-control" id="baujahr"
+            [(ngModel)] = "car.baujahr" name="baujahr">
+    </div>
+
+    <div class="form-group">
+        <label> Motor </label>
+        <input type="text" class="form-control" id="motor"
+            [(ngModel)] = "car.motor" name="motor">
+    </div>
+
+    <div class="form-group">
+        <label> Verbrauch </label>
+        <input type="text" class="form-control" id="verbrauch"
+            [(ngModel)] = "car.verbrauch" name="verbrauch">
+    </div>
+
+    <button class="btn btn-success" type="submit"> Submit </button>
+
+    </form>
+</div>

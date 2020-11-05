@@ -18,7 +18,7 @@ export class CarService {
   }
 
   createCar(car: Car): Observable<Object> {
-    return this.http.post(`${this.postURL}`, car​​​);
+    return this.http.post(`${this.postURL}`, car);
   }
 
   getCarById(id: number):Observable<Car>{
@@ -30,7 +30,6 @@ export class CarService {
   }
 
   deleteCar(id: number): Observable<Object> {
-    console.info("hello world");
     return this.http.delete(`${this.postURL}/${id}`);
   }
 

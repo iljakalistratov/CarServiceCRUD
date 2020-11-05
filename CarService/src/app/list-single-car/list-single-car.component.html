@@ -1,4 +1,4 @@
-<h2>Car with ID {{car.id}}</h2>>
+<h2 *ngIf="car">Car with ID {{car.id}}</h2>
 <table class= "table table-striped">
     <thead>
         <tr>
@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr *ngIf="car">
             <td> {{car.id}} </td>
             <td> {{car.model}} </td>
             <td> {{car.brand}} </td>

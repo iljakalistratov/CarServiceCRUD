@@ -1,6 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchCarComponent } from './search-car.component';
+import {ActivatedRoute, RouterModule} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
+import {RouterTestingModule} from "@angular/router/testing";
+import {Observable, of} from "rxjs";
+import {Car} from "../car";
+import {CarService} from "../car.service";
 
 describe('SearchCarComponent', () => {
   let component: SearchCarComponent;
@@ -8,7 +14,9 @@ describe('SearchCarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchCarComponent ]
+      declarations: [ SearchCarComponent ],
+      imports: [ RouterModule, RouterTestingModule, HttpClientModule ],
+      providers: [{ provide: CarService, useClass: CarServiceStub }]
     })
     .compileComponents();
   });
@@ -23,3 +31,14 @@ describe('SearchCarComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+class CarServiceStub {
+  createCar(car: any): Observable<any> {
+    return of(Car);
+  }
+
+  getCarById(number: any): Observable<Car> {
+    return new Observable<Car>();
+  }
+
+}

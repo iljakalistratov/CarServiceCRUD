@@ -1,0 +1,21 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    network_mode: bridge
+    container_name: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    expose:
+    - 5432
+    ports:
+      - 5432:5432
+    environment:
+         - POSTGRES_PASSWORD=docker
+         - POSTGRES_USER=docker
+         - POSTGRES_DB=docker
+    restart: unless-stopped
+# This is my rest api app*****************************************
+
+volumes:
+  postgres-data:

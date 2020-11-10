@@ -24,7 +24,7 @@ The Project utilizes the Spring Boot framework in order to manage it's API.
     - On Windows:   ``mvnw package``
     - On Unix:  ``mvn package`` 
 - Setup the database using ``docker-compose up -d`` from the root directory
-- The API should now be running on ``http://localhost:8080/ultra-api/``
+- The API should now be running on ``http://localhost:8080/cars/``
 
 ## Documentation
 - This project is compatible with java docs

@@ -8,8 +8,8 @@ import { Car } from './car';
 })
 export class CarService {
 
-  private baseURL = "http://192.168.99.101:30002/carlist";
-  private postURL = "http://192.168.99.101:30002/car";
+  private baseURL = "http://minikube:30002/carlist";
+  private postURL = "http://minikube:30002/car";
 
   constructor(private http: HttpClient) { }
 

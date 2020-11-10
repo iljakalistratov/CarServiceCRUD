@@ -46,12 +46,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/car",
+					"raw": "http://192.168.99.101:30002/car",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"99",
+						"101"
 					],
-					"port": "8080",
+					"port": "30002",
 					"path": [
 						"car"
 					]
@@ -86,12 +89,15 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/carlist",
+					"raw": "http://192.168.99.101:30002/carlist",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"99",
+						"101"
 					],
-					"port": "8080",
+					"port": "30002",
 					"path": [
 						"carlist"
 					]
@@ -128,12 +134,15 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/car/{{carID}}",
+					"raw": "http://192.168.99.101:30002/car/{{carID}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"99",
+						"101"
 					],
-					"port": "8080",
+					"port": "30002",
 					"path": [
 						"car",
 						"{{carID}}"
@@ -169,12 +178,15 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/car",
+					"raw": "http://192.168.99.101:30002/car",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"99",
+						"101"
 					],
-					"port": "8080",
+					"port": "30002",
 					"path": [
 						"car"
 					]
@@ -211,12 +223,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/car/{{carID}}",
+					"raw": "http://192.168.99.101:30002/car/{{carID}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"99",
+						"101"
 					],
-					"port": "8080",
+					"port": "30002",
 					"path": [
 						"car",
 						"{{carID}}"
@@ -245,12 +260,15 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/car/{{carID}}",
+					"raw": "http://192.168.99.101:30002/car/{{carID}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"99",
+						"101"
 					],
-					"port": "8080",
+					"port": "30002",
 					"path": [
 						"car",
 						"{{carID}}"
@@ -279,12 +297,15 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/car/9999",
+					"raw": "http://192.168.99.101:30002/car/9999",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"99",
+						"101"
 					],
-					"port": "8080",
+					"port": "30002",
 					"path": [
 						"car",
 						"9999"

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:12
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: carservice-database-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: carservice-database-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: cars
+  POSTGRES_USER: docker
+  POSTGRES_PASSWORD: docker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

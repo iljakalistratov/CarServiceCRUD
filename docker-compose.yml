@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  database:
+    image: postgres:12
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: docker
+      POSTGRES_DB: cars
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+  backend-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-SpringBoot
+    image: springboot
+    container_name: springboot
+    depends_on:
+      - database
+    networks:
+      - backend
+      - frontend
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+  frontend-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-Angular
+    image: angular
+    container_name: angular
+    depends_on:
+      - backend-app
+    networks:
+      - frontend
+    ports:
+      - 80:80
+networks:
+  backend:
+  frontend:

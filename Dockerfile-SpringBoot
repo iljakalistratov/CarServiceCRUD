@@ -1,0 +1,6 @@
+# Start with a base image containing Java runtime
+FROM openjdk:11
+
+ADD target/RestfulCarlist-0.0.1.jar RestfulCarlist-0.0.1.jar
+
+ENTRYPOINT ["java","-jar","RestfulCarlist-0.0.1.jar"]

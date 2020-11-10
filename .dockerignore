@@ -1,0 +1,10 @@
+.git
+node_modules
+.mvn
+.idea
+.gitignore
+Dockerfile
+logs
+CarService/.git
+CarService/node_modules
+CarService/dist

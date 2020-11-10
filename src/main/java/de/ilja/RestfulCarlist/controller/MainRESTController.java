@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * Main Controller Class for Http requests & CRUD operations
  * author Ilja
  */
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @ApiOperation(value = "/car", tags = "MainRESTController")
 @RestController
 public class MainRESTController {

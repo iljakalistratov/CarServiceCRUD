@@ -8,8 +8,8 @@ import { Car } from './car';
 })
 export class CarService {
 
-  private baseURL = "http://localhost:8080/carlist";
-  private postURL = "http://localhost:8080/car";
+  private baseURL = "http://192.168.99.100:8080/carlist";
+  private postURL = "http://192.168.99.100:8080/car";
 
   constructor(private http: HttpClient) { }
 

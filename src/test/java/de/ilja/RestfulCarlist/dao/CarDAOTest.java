@@ -29,8 +29,7 @@ class CarDAOTest {
 
     @Test
     void addCar() {
-        carDao.addCar(car1);
-        Mockito.verify(carRepository1, Mockito.times(1)).save(Mockito.any(Car.class));
+
 
     }
 
@@ -51,6 +50,7 @@ class CarDAOTest {
 
     @Test
     void deleteCar() {
+        Mockito.when(carRepository1.existsById(Mockito.anyInt())).thenReturn(true);
         Mockito.when(carRepository1.findById(Mockito.anyInt())).thenReturn(Optional.of(car1));
         carDao.deleteCar(1000);
         Mockito.verify(carRepository1, Mockito.times(1)).deleteById(Mockito.anyInt());

@@ -96,3 +96,7 @@ The Project utilizes the Spring Boot framework in order to manage it's API, post
         - as well as a JSON Object in the body containing the same items as the create method
     - **D**elete entries: DELETE-Request to ``http://minikube:30002/car/"id"``
 - For precise Usage info, please visit ``http://minikube:30002/swagger-ui/``
+
+
+
+jzuogtz

@@ -1,0 +1,30 @@
+name: CarService-API-Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  newman:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setting up Local PostgreSQL Server
+      uses: harmon758/postgresql-action@v1
+      with:
+        postgresql version: '12'
+        postgresql db: 'cars'
+        postgresql user: 'docker'
+        postgresql password: 'docker'
+    - name: Changing Hostfile for Springboot
+      run:  sudo echo "127.0.0.1 database" | sudo tee -a /etc/hosts      
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml    
+    - name: Test the api with newman tests
+      uses: matt-ball/newman-action@master
+      run: java -jar ./target/RestfulCarlist-0.0.1.jar
+      with:
+        collection: ./newman api test/CarService.postman_collection.json
+        environment: ./newman api test/local.postman_environment.json

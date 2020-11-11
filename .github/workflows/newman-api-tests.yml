@@ -21,10 +21,11 @@ jobs:
     - name: Changing Hostfile for Springboot
       run:  sudo echo "127.0.0.1 database" | sudo tee -a /etc/hosts      
     - name: Build with Maven
-      run: mvn -B package --file pom.xml    
+      run: mvn -B package --file pom.xml
+    - run: java -jar ./target/RestfulCarlist-0.0.1.jar & 
+    - run: sleep 20
     - name: Test the api with newman tests
       uses: matt-ball/newman-action@master
-      run: java -jar ./target/RestfulCarlist-0.0.1.jar
       with:
         collection: ./newman api test/CarService.postman_collection.json
         environment: ./newman api test/local.postman_environment.json

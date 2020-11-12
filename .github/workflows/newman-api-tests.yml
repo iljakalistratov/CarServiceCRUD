@@ -28,7 +28,7 @@ jobs:
         java-version: 1.11      
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - run: java -jar ./target/RestfulCarlist-0.0.1.jar
+    - run: java -jar ./target/RestfulCarlist-0.0.1.jar &
     - run: sleep 20
     - name: Test the api with newman tests
       uses: matt-ball/newman-action@master

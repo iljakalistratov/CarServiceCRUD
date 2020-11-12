@@ -1,0 +1,23 @@
+
+name: Car Service Angular Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Node.js (15) Testing Angular App
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+    - run: cd ./CarService && npm ci
+    - run: cd ./CarService && npm run build:prod --if-present
+    - run: cd ./CarService && npm run test:prod

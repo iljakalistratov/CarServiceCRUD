@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: springboot
+    release: prometheus
+  name: springboot-service-monitor
+spec:
+  endpoints:
+    - interval: 15s
+      path: "/actuator/prometheus"
+      port: springboot
+      scheme: http
+  namespaceSelector:
+    matchNames:
+      - default
+  selector:
+    matchLabels:
+      app: springboot

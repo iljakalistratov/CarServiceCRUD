@@ -8,6 +8,8 @@
 - [Testing](#Testing)
 - [Frontend (Angular)](#Frontend (Angular))
 - [Usage](#Usage)
+- [Grafana](#Grafana)
+
 
 ## Overview
 A web application based on a restful CRUD API, that allows you to manage an Inventory of cars, with options to list, create, update and delete entrys. 
@@ -92,4 +94,8 @@ The Project utilizes the Spring Boot framework in order to manage it's API, post
         - as well as a JSON Object in the body containing the same items as the create method
     - **D**elete entries: DELETE-Request to ``http://minikube:30002/car/"id"``
 - For precise Usage info, please visit ``http://minikube:30002/swagger-ui/``
+
+## Grafana
+- test
+
 

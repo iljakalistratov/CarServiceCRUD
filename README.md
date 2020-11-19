@@ -29,8 +29,8 @@ The Project utilizes the Spring Boot framework in order to manage it's API, post
     - ``npm intsall -g typescript angular``
 - Step 2: Add ``springboot`` to the host file and point it towards the minikube ip
     - Example: ``192.168.99.107    springboot``
-- Step 3: Run the deployment script ``bash ./deploy.sh``
-- Step 4: The webapp should now be running at ``http://minikube/cars``
+- Step 3: Run the deployment script ``bash ./setup.sh``
+- Step 4: The webapp should now be running at ``http://minikube``
 - Step 5: If failed run: ``eval "$(minikube docker-env --shell=bash)"`` and repeat steps 2-3
 
 ## Installation (Local)
@@ -45,10 +45,6 @@ The Project utilizes the Spring Boot framework in order to manage it's API, post
     - ``mvn package && java -jar ./target/RestfulCarlist-0.0.1.jar``
      - ``cd ./src/main/angular && ng serve --open``
 - Step 5: Access the service over ``http://localhost:4200``
-
-## Testing (Kubernetes)
-- Run integration tests over Newman:
-    - ``newman run ./src/test/newman/test_ulta_carservice.kubernetes.postman_collection.json``
 
 ## Testing (Local)
 - The project has two types of test already setup: 
@@ -97,6 +93,3 @@ The Project utilizes the Spring Boot framework in order to manage it's API, post
     - **D**elete entries: DELETE-Request to ``http://minikube:30002/car/"id"``
 - For precise Usage info, please visit ``http://minikube:30002/swagger-ui/``
 
-
-
-jzuogtz

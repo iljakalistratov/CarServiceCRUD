@@ -96,6 +96,8 @@ The Project utilizes the Spring Boot framework in order to manage it's API, post
 - For precise Usage info, please visit ``http://minikube:30002/swagger-ui/``
 
 ## Grafana
-- test
+- To use Grafana with Prometheus in Kubernetes, you need to port-forward Prometheus & Grafana:
+    - ``kubectl port-forward prometheus-prometheus-prometheus-oper-prometheus-0 9090``
+    - ``kubectl port-forward deployment/prometheus-grafana 3000``
 
 

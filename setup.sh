@@ -25,7 +25,7 @@ kubectl apply -f ./deployment/kubernetes-ingress.yml
 kubectl apply -f ./prometheus-monitor.yml
 helm repo add stable https://charts.helm.sh/stable
 helm repo update
-helm install prometheus-monitoring stable/prometheus-operator --namespace monitoring-ns
+helm install prometheus-monitoring stable/prometheus-operator
 
 
 # Success message
